@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import Modal from './components/Modal';
 //var a liv globale
-const linkApi = "https://boolean-spec-frontend.vercel.app/freetestapi";
+const letters = "abcdefghijklmnopqrstuvwxyz";
+const numbers = "0123456789";
+const symbols = "!@#$%^&*`()_-+=[]{}|;:'\",.<>?/~";
 
 function App() {
   // stati 
@@ -51,6 +53,15 @@ function App() {
     });
   }
 
+  //controllo in tempo reale username 
+  const isUsernameValid = useMemo(() => {
+    const isValid = username.split("").every(char =>
+      letters.includes(char.toLowerCase()) ||
+      numbers.includes(char)
+    )
+    return isValid && username.length >= 6
+
+  }, [username])
 
 
   return (
@@ -69,11 +80,18 @@ function App() {
           />
 
 
+
           <input type="text"
             placeholder='Select your Username...'
             value={username}
             onChange={e => setUsername(e.target.value)}
           />
+
+          {!isUsernameValid && username.length > 0 && (
+            <p className="errore">
+              L'username deve avere almeno 6 caratteri e può contenere solo lettere e numeri.
+            </p>
+          )}
 
 
           <input type="password"
