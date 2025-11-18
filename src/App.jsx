@@ -23,10 +23,58 @@ function App() {
         <form action="submit">
 
           <input type="text"
-            placeholder='Your full name'
+            placeholder='Your full name...'
             value={nomeCompleto}
             onChange={e => setNomecompleto(e.target.value)}
           />
+
+
+          <input type="text"
+            placeholder='Select your Username...'
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+          />
+
+
+          <input type="password"
+            placeholder='Select your Password...'
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+
+          <select
+            value={specializzazione}
+            onChange={e => setSpecializzazione(e.target.value)}
+          >
+            <option value="">Scegli la tua specializzazione</option>
+            <option value="full_stack">Full stack</option>
+            <option value="frontend">Frontend</option>
+            <option value="beckend">Beckend</option>
+          </select>
+
+          <input type="number"
+            placeholder='Anni di esperienza'
+            min={0}
+            value={esperienza}
+            onChange={e => setEsperienza(e.target.value)}
+          />
+
+          <textarea
+            placeholder='Inserisci una tua breve descrizione...'
+            value={descrizione}
+            onChange={e => setDescrizione(e.target.value)}
+            rows={4}
+          >
+          </textarea>
+
+
+
+
+
+
+
+
+
 
 
 

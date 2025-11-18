@@ -19,17 +19,29 @@ header h1 {
   color: #ff00c8;
 }
 
+h2 {
+  text-align: center;
+
+}
+
 /* Main  */
 main {
   width: 90%;
   max-width: 600px;
   margin: 40px auto;
-  text-align: center;
+  text-align: left;
   position: "relative"
 }
 
 /* Input ricerca */
-input {
+select {
+  width: 300px !important;
+}
+
+input,
+textarea,
+select {
+  margin: 10px;
   width: 100%;
   padding: 12px 15px;
   font-size: 1rem;
@@ -41,11 +53,15 @@ input {
   transition: 0.25s;
 }
 
+select,
+textarea,
 input::placeholder {
   color: #ff00c8;
   opacity: 0.5;
 }
 
+select,
+textarea,
 input:focus {
   box-shadow: 0 0 10px #ff00c8;
   border-color: #ff00f4;
