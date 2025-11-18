@@ -22,7 +22,6 @@ function App() {
       !nomeCompleto.trim() ||
       !username.trim() ||
       !password.trim() ||
-      !specializzazione ||
       !esperienza ||
       !descrizione.trim()
     ) {
@@ -32,11 +31,24 @@ function App() {
     }
 
     if (Number(esperienza) < 0) {
-      setErrore("Non puoi inserire un numero negativo nel campo esperienza");
+      setErrore("Non puoi inserire un numero negativo nel campo esperienza!");
       return;
     }
 
-    console.log(nomeCompleto, specializzazione)
+    if (!specializzazione) {
+      setErrore("Seleziona una specializzazione!");
+      return;
+    }
+
+    //per il momento raccolgo tutti i dati solo per stamparli 
+    console.log({
+      nomeCompleto,
+      username,
+      password,
+      esperienza,
+      specializzazione,
+      descrizione
+    });
   }
 
 
