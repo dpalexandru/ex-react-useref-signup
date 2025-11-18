@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Modal from './components/Modal';
 //var a liv globale
 const linkApi = "https://boolean-spec-frontend.vercel.app/freetestapi";
 
@@ -10,8 +11,33 @@ function App() {
   const [specializzazione, setSpecializzazione] = useState("")
   const [esperienza, setEsperienza] = useState("")
   const [descrizione, setDescrizione] = useState("")
+  const [errore, setErrore] = useState("");
+
 
   console.log("render")
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    if (
+      !nomeCompleto.trim() ||
+      !username.trim() ||
+      !password.trim() ||
+      !specializzazione ||
+      !esperienza ||
+      !descrizione.trim()
+    ) {
+      setErrore("Compila tutti i campi");
+      console.log("Compila tutti i campi prima di continuare");
+      return;
+    }
+
+    if (Number(esperienza) < 0) {
+      setErrore("Non puoi inserire un numero negativo nel campo esperienza");
+      return;
+    }
+
+    console.log(nomeCompleto, specializzazione)
+  }
 
 
 
@@ -20,7 +46,9 @@ function App() {
       <header><h1>Welocome Dev! </h1></header>
       <main>
         <h2 className='intestazione-main'>You can register here</h2>
-        <form action="submit">
+        <Modal message={errore} onClose={() => setErrore("")} />
+
+        <form onSubmit={handleSubmit}>
 
           <input type="text"
             placeholder='Your full name...'
@@ -54,7 +82,6 @@ function App() {
 
           <input type="number"
             placeholder='Anni di esperienza'
-            min={0}
             value={esperienza}
             onChange={e => setEsperienza(e.target.value)}
           />
@@ -67,16 +94,7 @@ function App() {
           >
           </textarea>
 
-
-
-
-
-
-
-
-
-
-
+          <button type='submit'>Send</button>
 
         </form>
 
