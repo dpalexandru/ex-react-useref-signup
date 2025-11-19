@@ -75,6 +75,15 @@ function App() {
     return hasMinLength && hasNumber && hasSymbol && hasLetter;
   }, [password]);
 
+  //controllo in tempo reale password
+  const isDescriptionValid = useMemo(() => {
+    const hasMinLength = descrizione.trim().length >= 100;
+    const hasMaxLength = descrizione.trim().length <= 1000
+
+    return hasMinLength && hasMaxLength
+  }, [descrizione]);
+
+
 
   return (
     <>
@@ -140,6 +149,13 @@ function App() {
             rows={4}
           >
           </textarea>
+
+
+          {!isDescriptionValid && descrizione.length > 0 && (
+            <p className="errore">
+              La descrizione deve essere min: 100 e max: 1000 caratteri.
+            </p>
+          )}
 
           <button type='submit'>Send</button>
 

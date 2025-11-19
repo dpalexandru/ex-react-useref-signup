@@ -138,3 +138,13 @@ input:focus {
   background: #ff33ff;
   box-shadow: 0 0 12px #ff00ff;
 }
+
+.errore {
+  color: #ff4dff;
+  background: rgba(235, 229, 235, 0.08);
+  border-left: 3px solid #ff00e6;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  margin: 5px 0 0 10px;
+  border-radius: 4px;
+}
