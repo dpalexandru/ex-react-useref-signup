@@ -63,6 +63,18 @@ function App() {
 
   }, [username])
 
+  //controllo in tempo reale password
+  const isPasswordValid = useMemo(() => {
+    const hasMinLength = password.length >= 8;
+    const hasNumber = password.split("").some(char => numbers.includes(char));
+    const hasSymbol = password.split("").some(char => symbols.includes(char));
+    const hasLetter = password.split("").some(char =>
+      letters.includes(char.toLowerCase())
+    );
+
+    return hasMinLength && hasNumber && hasSymbol && hasLetter;
+  }, [password]);
+
 
   return (
     <>
@@ -99,6 +111,11 @@ function App() {
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
+          {!isPasswordValid && password.length > 0 && (
+            <p className="errore">
+              La password deve avere almeno di 8 caratteri e deve contenere un almeno un numero e almeno un carattere speciale.
+            </p>
+          )}
 
           <select
             value={specializzazione}
@@ -127,10 +144,6 @@ function App() {
           <button type='submit'>Send</button>
 
         </form>
-
-
-
-
       </main>
 
     </>
