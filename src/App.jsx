@@ -25,7 +25,10 @@ function App() {
       !username.trim() ||
       !password.trim() ||
       !esperienza ||
-      !descrizione.trim()
+      !descrizione.trim() ||
+      !isDescriptionValid ||
+      !isPasswordValid ||
+      !isUsernameValid
     ) {
       setErrore("Compila tutti i campi");
       console.log("Compila tutti i campi prima di continuare");
@@ -113,6 +116,11 @@ function App() {
               L'username deve avere almeno 6 caratteri e può contenere solo lettere e numeri.
             </p>
           )}
+          {isUsernameValid && username.length > 0 && (
+            <p className="successo">
+              ✓ Username valido!
+            </p>
+          )}
 
 
           <input type="password"
@@ -125,6 +133,12 @@ function App() {
               La password deve avere almeno di 8 caratteri e deve contenere un almeno un numero e almeno un carattere speciale.
             </p>
           )}
+          {isPasswordValid && username.length > 0 && (
+            <p className="successo">
+              ✓ Password valida!
+            </p>
+          )}
+
 
           <select
             value={specializzazione}
@@ -153,7 +167,12 @@ function App() {
 
           {!isDescriptionValid && descrizione.length > 0 && (
             <p className="errore">
-              La descrizione deve essere min: 100 e max: 1000 caratteri.
+              La descrizione deve essere min: 100 e max: 1000 caratteri. Ora hai scritto: {`${descrizione.length} caratteri`}
+            </p>
+          )}
+          {isDescriptionValid && username.length > 0 && (
+            <p className="successo">
+              ✓ Descrizione valida!
             </p>
           )}
 

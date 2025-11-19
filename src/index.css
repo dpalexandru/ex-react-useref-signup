@@ -148,3 +148,13 @@ input:focus {
   margin: 5px 0 0 10px;
   border-radius: 4px;
 }
+
+.successo {
+  color: #00ff9f;
+  background: rgba(0, 255, 150, 0.08);
+  border-left: 3px solid #00ffbb;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  margin: 5px 0 0 10px;
+  border-radius: 4px;
+}
