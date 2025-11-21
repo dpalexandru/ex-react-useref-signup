@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from 'react'
+import { useState, useMemo, useRef, useEffect } from 'react'
 import Modal from './components/Modal';
 //var a liv globale
 const letters = "abcdefghijklmnopqrstuvwxyz";
@@ -16,7 +16,11 @@ function App() {
   const specializzazioneRef = useRef(null);
   const nomeCompletoRef = useRef(null);
 
+  //useEffect
 
+  useEffect(() => {
+    nomeCompletoRef.current.focus();
+  }, [])
 
 
   console.log("render")
