@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef } from 'react'
 import Modal from './components/Modal';
 //var a liv globale
 const letters = "abcdefghijklmnopqrstuvwxyz";
@@ -7,24 +7,32 @@ const symbols = "!@#$%^&*`()_-+=[]{}|;:'\",.<>?/~";
 
 function App() {
   // stati 
-  const [nomeCompleto, setNomecompleto] = useState("")
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  const [specializzazione, setSpecializzazione] = useState("")
-  const [esperienza, setEsperienza] = useState("")
   const [descrizione, setDescrizione] = useState("")
   const [errore, setErrore] = useState("");
+  // ref
+  const esperienzaRef = useRef(null);
+  const specializzazioneRef = useRef(null);
+  const nomeCompletoRef = useRef(null);
+
+
 
 
   console.log("render")
 
   function handleSubmit(e) {
     e.preventDefault()
+
+    const esperienzaValue = esperienzaRef.current.value;
+    const specializzazioneValue = specializzazioneRef.current?.value;
+    const nomeCompletoValue = nomeCompletoRef.current.value;
+
+
     if (
-      !nomeCompleto.trim() ||
+      !nomeCompletoValue.trim() ||
       !username.trim() ||
       !password.trim() ||
-      !esperienza ||
       !descrizione.trim() ||
       !isDescriptionValid ||
       !isPasswordValid ||
@@ -35,23 +43,30 @@ function App() {
       return;
     }
 
-    if (Number(esperienza) < 0) {
+    if (Number(esperienzaValue) < 0) {
       setErrore("Non puoi inserire un numero negativo nel campo esperienza!");
       return;
     }
 
-    if (!specializzazione) {
+    if (!specializzazioneValue) {
       setErrore("Seleziona una specializzazione!");
       return;
     }
 
+    if (!esperienzaValue) {
+      setErrore("Inserisci anni esperienza please!");
+      return;
+
+    }
+
+
     //per il momento raccolgo tutti i dati solo per stamparli 
     console.log({
-      nomeCompleto,
+      nomeCompletoValue,
       username,
       password,
-      esperienza,
-      specializzazione,
+      esperienzaValue,
+      specializzazioneValue,
       descrizione
     });
   }
@@ -99,8 +114,7 @@ function App() {
 
           <input type="text"
             placeholder='Your full name...'
-            value={nomeCompleto}
-            onChange={e => setNomecompleto(e.target.value)}
+            ref={nomeCompletoRef}
           />
 
 
@@ -141,8 +155,7 @@ function App() {
 
 
           <select
-            value={specializzazione}
-            onChange={e => setSpecializzazione(e.target.value)}
+            ref={specializzazioneRef}
           >
             <option value="">Scegli la tua specializzazione</option>
             <option value="full_stack">Full stack</option>
@@ -150,10 +163,10 @@ function App() {
             <option value="beckend">Beckend</option>
           </select>
 
-          <input type="number"
-            placeholder='Anni di esperienza'
-            value={esperienza}
-            onChange={e => setEsperienza(e.target.value)}
+          <input
+            type="number"
+            placeholder="Anni di esperienza"
+            ref={esperienzaRef}
           />
 
           <textarea
