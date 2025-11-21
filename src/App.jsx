@@ -105,7 +105,18 @@ function App() {
     return hasMinLength && hasMaxLength
   }, [descrizione]);
 
+  //funzione reset dei campi 
 
+  const resetHandle = (e) => {
+    e.preventDefault()
+    setDescrizione("")
+    setPassword("")
+    setUsername("")
+    nomeCompletoRef.current.value = ""
+    esperienzaRef.current.value = ""
+    specializzazioneRef.current.value = ""
+    nomeCompletoRef.current.focus();
+  }
 
   return (
     <>
@@ -194,8 +205,10 @@ function App() {
           )}
 
           <button type='submit'>Send</button>
+          <button onClick={resetHandle}>Reset</button>
 
         </form>
+
       </main>
 
     </>
