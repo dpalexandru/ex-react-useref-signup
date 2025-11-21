@@ -210,6 +210,18 @@ function App() {
         </form>
 
       </main>
+      <button className="back-to-top" onClick={() => window.scrollTo(0, 0)}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="26"
+          height="26"
+          fill="currentColor"
+          viewBox="0 0 16 16"
+        >
+          <path d="M8 12a.5.5 0 0 1-.5-.5V4.707L4.354 7.854a.5.5 0 1 1-.708-.708l4-4a.5.5 0 0 1 .708 0l4 4a.5.5 0 1 1-.708.708L8.5 4.707V11.5A.5.5 0 0 1 8 12z" />
+        </svg>
+      </button>
+      <footer style={{ height: '100vh' }}></footer >
 
     </>
   )

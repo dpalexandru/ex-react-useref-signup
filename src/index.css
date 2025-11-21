@@ -158,3 +158,23 @@ input:focus {
   margin: 5px 0 0 10px;
   border-radius: 4px;
 }
+
+/* Freccia torna su */
+
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 10px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: black;
+  transition: transform 0.2s ease;
+}
+
+.back-to-top:hover {
+  transform: scale(1.15);
+}
